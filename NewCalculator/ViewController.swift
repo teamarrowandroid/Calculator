@@ -13,21 +13,25 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var display: UILabel!
     var oper:String="0"
-    var a:Double=0
-    var b:Double=0
-    var result:Double=0
+    var a:Double=0    //first number
+    var b:Double=0    //second number
+    var result:Double=0     //result
     @IBAction func typenumbers(_ sender: UIButton) {
         if(sender.tag==11)
         {
             if(display.text?.contains("."))!
             {
-                
+                //do nothing if decimal is already used!
             }
             else{
                 display.text=display.text! + "."
             }
         }
         else{
+            if display.text=="+" || display.text=="-" || display.text=="*" || display.text=="/"
+            {
+                display.text=""
+            }
             display.text=display.text! + String(sender.tag-1)
         }
         
@@ -45,36 +49,54 @@ class ViewController: UIViewController {
 
     @IBAction func operation(_ sender: UIButton)
     {
+        
+        //when "C" is used
         if sender.tag==17
         {
             display.text=""
             a=0
             b=0
         }
-         if(sender.tag==12)    //Addition
+        // ############### when operation symbol is clicked
+        
+         if(sender.tag==12)    //Addition is
         {
-            a=Double(display.text!)!
-            oper="+"
-            display.text=""
+            if display.text=="+" || display.text=="-" || display.text=="*" || display.text=="/"
+            {
+                display.text="+"
+                oper="+"
+            
+            }
+            else{
+                a=Double(display.text!)!
+                oper="+"
+                display.text="+"
+            }
         }
-        if(sender.tag==13)     //Subtraction
+        else if(sender.tag==13)     //Subtraction
         {
             a=Double(display.text!)!
             oper="-"
-            display.text=""
+            display.text="-"
         }
-        if(sender.tag==14)     //Division
+        else if(sender.tag==14)     //Division
         {
             a=Double(display.text!)!
             oper="/"
-            display.text=""
+            display.text="/"
         }
-        if(sender.tag==15)     //Multiplication
+        else if(sender.tag==15)     //Multiplication
         {
             a=Double(display.text!)!
             oper="*"
-            display.text=""
+            display.text="*"
         }
+        
+        
+         // ############### when "=" symbol is clicked
+        
+        
+        
         if(sender.tag==16)
         {
             if(oper=="0")
@@ -87,10 +109,22 @@ class ViewController: UIViewController {
                b=Double(display.text!)!
               
                 
-                 result=a+b
+                
+                if a.description.contains(".") || b.description.contains(".")
+                {
+                     result=a+b
+                     display.text=String(result)
+                    
+                }
+                
+                 else if !a.description.contains(".") || !b.description.contains(".")
+                {
+                    var re = a+b
+                     display.text="no number"
+                }
                 
                 
-                 display.text=String(result)
+                
                 
                 
             }
