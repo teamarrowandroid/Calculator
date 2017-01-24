@@ -75,22 +75,44 @@ class ViewController: UIViewController {
         }
         else if(sender.tag==13)     //Subtraction
         {
-            a=Double(display.text!)!
-            oper="-"
-            display.text="-"
-        }
+            if display.text=="+" || display.text=="-" || display.text=="*" || display.text=="/"
+            {
+                display.text="-"
+                oper="-"
+                
+            }
+            else{
+                a=Double(display.text!)!
+                oper="-"
+                display.text="-"
+            }        }
         else if(sender.tag==14)     //Division
         {
-            a=Double(display.text!)!
-            oper="/"
-            display.text="/"
+            if display.text=="+" || display.text=="-" || display.text=="*" || display.text=="/"
+            {
+                display.text="/"
+                oper="/"
+                
+            }
+            else{
+                a=Double(display.text!)!
+                oper="/"
+                display.text="/"
+            }
         }
         else if(sender.tag==15)     //Multiplication
         {
-            a=Double(display.text!)!
-            oper="*"
-            display.text="*"
-        }
+            if display.text=="+" || display.text=="-" || display.text=="*" || display.text=="/"
+            {
+                display.text="*"
+                oper="*"
+                
+            }
+            else{
+                a=Double(display.text!)!
+                oper="*"
+                display.text="*"
+            }        }
         
         
          // ############### when "=" symbol is clicked
